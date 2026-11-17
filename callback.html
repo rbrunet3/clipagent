@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClipAgent: connecting</title><link rel="stylesheet" href="style.css"></head><body><main>
+<h1>Connecting to ClipAgent</h1>
+<div class="box" id="msg">Reading the sign-in result…</div>
+<script>
+// Instagram sends the user back here with ?code=... ClipAgent's sign-in command waits on this computer at
+// 127.0.0.1:8799, so the code is forwarded there. If that doesn't work, it can be copied by hand.
+const q = new URLSearchParams(location.search);
+const code = (q.get("code") || "").replace(/#_$/, ""), err = q.get("error_description") || q.get("error");
+const box = document.getElementById("msg");
+if (err) {
+  box.textContent = "Sign-in was cancelled or failed: " + err;
+} else if (code) {
+  box.innerHTML = "Sending the code to ClipAgent on this computer… If nothing happens, copy it and paste it into the "
+    + "window where you ran the sign-in command:<p><code id=\"c\"></code></p><button id=\"b\">Copy code</button>";
+  document.getElementById("c").textContent = code;
+  document.getElementById("b").onclick = () => navigator.clipboard.writeText(code);
+  setTimeout(() => {
+    location.href = "http://127.0.0.1:8799/?code=" + encodeURIComponent(code) + "&state=" + encodeURIComponent(q.get("state") || "");
+  }, 800);
+} else {
+  box.textContent = "No sign-in code in this link.";
+}
+</script>
+</main></body></html>

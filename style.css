@@ -1,0 +1,7 @@
+body{margin:0;font:16px/1.6 system-ui,Segoe UI,Roboto,sans-serif;background:#0e0f12;color:#e9ebef}
+main{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+h1{font-size:28px;margin:0 0 4px}h2{font-size:18px;margin-top:32px}
+a{color:#ffd400}.muted{color:#8c93a0;font-size:14px}
+nav{margin-bottom:28px}nav a{margin-right:16px;font-size:14px}code{background:#17191e;padding:2px 6px;border-radius:4px;word-break:break-all}
+.box{background:#17191e;border:1px solid #262a31;border-radius:10px;padding:18px;margin:18px 0}
+button{background:#ffd400;color:#111;border:0;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer}
